@@ -16,7 +16,14 @@
         <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
         <div style="color:red" th:if="${usernameError}" th:text="${usernameError}">Password Error</div>
         <br/>
-        <input type="submit" value="Create!"/>
+        <label for="role">role</label>
+            <select th:object="${userForm}" th:field="*{roles}" id="role">
+                <!--<option th:each="r : ${role}" th:value="${role}" th:text="${role.getName()}">-->
+                <option th:value="1" th:text="user"></option>
+                <option th:value="2" th:text="admin"></option>
+            </select>
+        <br/>
+        <input type="submit" value="Create"/>
     </form>
     <hr>
     <a href="/logout">Выход</a>

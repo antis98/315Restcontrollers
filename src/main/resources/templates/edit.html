@@ -15,7 +15,13 @@
     <input type="text" th:field="*{password}" id="password"/>
     <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
     <br/>
-    <input type="submit" value="Редактировать"/>
+    <label for="role">role</label>
+    <select th:object="${user}" th:field="*{roles}" id="role">
+        <option th:value="1" th:text="user"></option>
+        <option th:value="2" th:text="admin"></option>
+    </select>
+    <br/>
+    <input type="submit" value="Edit"/>
 </form>
 <hr>
 <a href="/logout">Выход</a>
