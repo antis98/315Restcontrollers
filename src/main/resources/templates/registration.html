@@ -16,8 +16,9 @@
         <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
         <div style="color:red" th:if="${usernameError}" th:text="${usernameError}">Password Error</div>
         <br/>
-        <label for="role">role</label>
-        <select th:field="*{roles}" id="role">
+        <label for="role">roles: </label>
+        <br/>
+        <select th:field="*{roles}" id="role" multiple>
             <option th:value="1" th:text="user"></option>
             <option th:value="2" th:text="admin"></option>
         </select>
