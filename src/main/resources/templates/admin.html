@@ -6,17 +6,19 @@
 </head>
 <body>
 <div>
-    <table>
+    <table border="1">
         <thead>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Roles</th>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <th:block th:each="user : ${allUsers}">
             <tr>
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.username}"></td>
-                <!-- td th:each="role : ${user.roles}" th:text="${role.name}" -->
                 <td>
                     <span th:each="j : ${user.roles}">
                         <span th:text="${j.name}"></span>
