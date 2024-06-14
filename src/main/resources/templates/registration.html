@@ -17,10 +17,10 @@
         <div style="color:red" th:if="${usernameError}" th:text="${usernameError}">Password Error</div>
         <br/>
         <label for="role">role</label>
-            <select th:object="${userForm}" th:field="*{roles}" id="role">
-                <option th:value="1" th:text="user"></option>
-                <option th:value="2" th:text="admin"></option>
-            </select>
+        <select th:field="*{roles}" id="role">
+            <option th:value="1" th:text="user"></option>
+            <option th:value="2" th:text="admin"></option>
+        </select>
         <br/>
         <input type="submit" value="Create"/>
     </form>
