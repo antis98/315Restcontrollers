@@ -5,6 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
@@ -20,18 +23,55 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "username")
-    @Size(min=3, message = "Не меньше 3 знаков")
+    @NotEmpty(message = "Обязательное поле")
+    @Email(message = "Некоректный email")
     private String username;
 
+    @Column(name = "first_name")
+    @NotEmpty(message = "Обязательное поле")
+    private String firstName;
+
+    @Column(name = "last_name")
+    @NotEmpty(message = "Обязательное поле")
+    private String lastName;
+
+    @Column(name = "age")
+    @Min(value = 1, message = "Возраст должен быть больше 0")
+    private String age;
+
     @Column(name = "password")
-    @Size(min=3, message = "Не меньше 3 знаков")
     private String password;
 
     public User() {
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @NotEmpty(message = "Не выбрана роль")
     private Set<Role> roles;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

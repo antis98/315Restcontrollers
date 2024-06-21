@@ -98,7 +98,15 @@ public class UserServiceImpl implements UserService {
 
         User user = findUserById(id);
 
-        if (!updatedUser.getPassword().equals(user.getPassword())) {
+
+        //if (!updatedUser.getPassword().equals(user.getPassword())) {
+        //    updatedUser.setPassword(bCryptPasswordEncoder.encode(updatedUser.getPassword()));
+        //}
+
+
+        if (updatedUser.getPassword().isEmpty()) {
+            updatedUser.setPassword(user.getPassword());
+        } else {
             updatedUser.setPassword(bCryptPasswordEncoder.encode(updatedUser.getPassword()));
         }
         //updatedUser.setRoles(updatedUser.getRoles());

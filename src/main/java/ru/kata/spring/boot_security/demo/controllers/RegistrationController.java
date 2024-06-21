@@ -23,6 +23,11 @@ public class RegistrationController {
         this.userService = userService;
     }
 
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -35,12 +40,12 @@ public class RegistrationController {
                           BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "redirect:/admin";
         }
         if (!userService.saveUser(userForm)) {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
 
-            return "registration";
+            return "redirect:/admin";
         }
         return "redirect:/admin";
     }

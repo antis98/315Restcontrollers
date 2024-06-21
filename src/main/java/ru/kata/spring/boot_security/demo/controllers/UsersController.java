@@ -24,6 +24,7 @@ public class UsersController {
     @GetMapping("/admin")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
+        model.addAttribute("userForm", new User());
         return "admin";
     }
 
@@ -47,7 +48,7 @@ public class UsersController {
     public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
                          @PathVariable("id") long id) {
         if (bindingResult.hasErrors())
-            return "edit";
+            return "redirect:/admin";
 
         userService.update(id, user);
         return "redirect:/admin";
