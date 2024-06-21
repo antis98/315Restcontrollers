@@ -26,7 +26,7 @@
         <label for="password">password: </label>
         <input type="text" th:field="*{password}" id="password"/>
         <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
-        <div style="color:red" th:if="${usernameError}" th:text="${usernameError}">Password Error</div>
+        <div style="color:red" th:if="${password}" th:text="${passwordError}">Password Error</div>
         <br/>
         <label for="role">roles: </label>
         <br/>

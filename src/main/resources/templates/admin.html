@@ -13,37 +13,13 @@
 <body>
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-     <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse">
         <div class="navbar-brand" sec:authorize="isAuthenticated()">
-            <span class="font-weight-bold" sec:authentication="name"></span> with roles: <span th:each="role : ${#authentication.authorities}">
+            <span class="font-weight-bold" sec:authentication="name"></span> with roles: <span
+                th:each="role : ${#authentication.authorities}">
              <span th:text="${role}"></span>
         </span>
         </div>
-
-        <!--
-
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg p-0 m-0" style="padding: 0">
-
-
-        <th:block th:each="user : ${allUsers}">
-
-        <div sec:authorize="isAuthenticated()">
-            Authenticated as <span sec:authentication="name"></span></div>
-
-
-
-
-
-                <button class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="d-flex flex-row-reverse p-0 m-0">
-            <a class="text-secondary" href="/logout">Logout</a>
-        </div>
-
-        -->
     </div>
 
     <div class="d-flex flex-row-reverse">
@@ -146,7 +122,8 @@
                                                                        class="col-form-label font-weight-bold">First
                                                                     name</label>
                                                                 <input type="text" class="form-control" name="firstName"
-                                                                       th:value="*{firstName}" id="firstNameEd" required/>
+                                                                       th:value="*{firstName}" id="firstNameEd"
+                                                                       required/>
                                                             </div>
                                                             <div class="form-group text-center">
                                                                 <label for="lastNameEd"
@@ -194,13 +171,11 @@
                                                                     data-dismiss="modal">Close
                                                             </button>
 
-                                                            <!--form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}"-->
                                                             <input type="hidden" name="userId" th:value="*{id}"/>
                                                             <input type="hidden" name="action" value="update"/>
                                                             <button type="submit" value="Edit" class="btn btn-primary">
                                                                 Edit
                                                             </button>
-                                                            <!--/form-->
                                                         </div>
 
                                                     </form>
@@ -341,7 +316,6 @@
                                 <label for="email" class="font-weight-bold">Email: </label>
                                 <input type="email" class="form-control" th:field="*{username}" id="email"
                                        placeholder="Email" required/>
-
                                 <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
                                     Username Error
                                 </div>
