@@ -38,12 +38,6 @@ public class UsersController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/{id}/edit")
-    public String edit(Model model, @PathVariable("id") long id) {
-        model.addAttribute("user", userService.findUserById(id));
-        return "edit";
-    }
-
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
                          @PathVariable("id") long id) {
