@@ -107,7 +107,7 @@
                                                     </div>
 
                                                     <form class="needs-validation" th:method="PATCH"
-                                                          th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+                                                          th:action="@{/{id}(id=${user.getId()})}" >
 
                                                         <div class="modal-body col-6 m-auto">
 
@@ -115,14 +115,14 @@
                                                                 <label for="ID_edit"
                                                                        class="col-form-label font-weight-bold">ID</label>
                                                                 <input type="text" class="form-control" name="id"
-                                                                       th:value="*{id}" id="ID_edit" readonly/>
+                                                                       th:value="*{user.id}" id="ID_edit" readonly/>
                                                             </div>
                                                             <div class="form-group text-center">
                                                                 <label for="firstNameEd"
                                                                        class="col-form-label font-weight-bold">First
                                                                     name</label>
                                                                 <input type="text" class="form-control" name="firstName"
-                                                                       th:value="*{firstName}" id="firstNameEd"
+                                                                       th:value="*{user.firstName}" id="firstNameEd"
                                                                        required/>
                                                             </div>
                                                             <div class="form-group text-center">
@@ -130,13 +130,13 @@
                                                                        class="col-form-label font-weight-bold">Last
                                                                     name</label>
                                                                 <input type="text" class="form-control" name="lastName"
-                                                                       th:value="*{lastName}" id="lastNameEd" required/>
+                                                                       th:value="*{user.lastName}" id="lastNameEd" required/>
                                                             </div>
                                                             <div class="form-group text-center">
                                                                 <label for="ageEd"
                                                                        class="col-form-label font-weight-bold">Age</label>
                                                                 <input type="number" class="form-control" name="age"
-                                                                       th:value="*{age}" id="ageEd" min="1" required/>
+                                                                       th:value="*{user.age}" id="ageEd" min="1" required/>
                                                                 <div class="valid-tooltip">
                                                                     Looks good!
                                                                 </div>
@@ -145,7 +145,7 @@
                                                                 <label for="emailEd"
                                                                        class="col-form-label font-weight-bold">Email</label>
                                                                 <input type="email" class="form-control" name="username"
-                                                                       th:value="*{username}" id="emailEd" required/>
+                                                                       th:value="${user.username}" id="emailEd" required/>
                                                             </div>
                                                             <div class="form-group text-center">
                                                                 <label for="passwordEd"
@@ -157,11 +157,13 @@
                                                             <div class="form-group text-center">
                                                                 <label for="roleEd"
                                                                        class="col-form-label font-weight-bold">Roles</label>
-                                                                <select class="custom-select form-group" name="roles"
-                                                                        th:value="*{roles}" id="roleEd" multiple
-                                                                        size="2" required>
-                                                                    <option th:value="1" th:text="user"></option>
-                                                                    <option th:value="2" th:text="admin"></option>
+                                                                <select class="form-control autofocus" name="roles"
+                                                                        th:value="${user.roles}" id="roleEd" multiple
+                                                                        size="2">
+
+                                                                    <option th:value="1" th:text="USER"></option>
+                                                                    <option th:value="2" th:text="ADMIN"></option>
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -171,7 +173,7 @@
                                                                     data-dismiss="modal">Close
                                                             </button>
 
-                                                            <input type="hidden" name="userId" th:value="*{id}"/>
+                                                            <input type="hidden" name="userId" th:value="${user.id}"/>
                                                             <input type="hidden" name="action" value="update"/>
                                                             <button type="submit" value="Edit" class="btn btn-primary">
                                                                 Edit
