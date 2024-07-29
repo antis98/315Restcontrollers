@@ -37,6 +37,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+//                .csrf()
+//                .disable()
+//                .authorizeRequests()
+//                .antMatchers("/registration").permitAll()//.hasRole("ADMIN")
+//                .antMatchers("/admin/**").permitAll()//.hasRole("ADMIN")
+//                .antMatchers("/user").permitAll()//.hasAnyRole("USER", "ADMIN")
+//                .antMatchers( "/resources/**").permitAll()
+//                .anyRequest().permitAll()//.authenticated()
+//                .and()
+//                .formLogin().loginPage("/login")
+//                .successHandler(successUserHandler)
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll()
+//                .logoutSuccessUrl("/login");
                 .csrf()
                 .disable()
                 .authorizeRequests()
@@ -53,7 +69,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/login");
-
     }
 
     @Autowired

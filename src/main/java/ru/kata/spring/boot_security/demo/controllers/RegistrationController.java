@@ -4,16 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
 import javax.validation.Valid;
 
-@Controller
+@RestController
 public class RegistrationController {
 
     private final UserService userService;
@@ -24,23 +23,26 @@ public class RegistrationController {
     }
 
     @GetMapping("/login")
-    public String loginPage() {
-        return "login";
+    public ModelAndView loginPage() {
+
+        return new ModelAndView("/login");
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") @Valid User userForm,
+    public ModelAndView addUser(@ModelAttribute("userForm") @RequestBody @Valid User userForm,
                           BindingResult bindingResult, Model model) {
 
+        ModelAndView mav = new ModelAndView("redirect:/admin");
+
         if (bindingResult.hasErrors()) {
-            return "redirect:/admin";
+            return null;
         }
         if (!userService.saveUser(userForm)) {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
 
-            return "redirect:/admin";
+            return null;
         }
-        return "redirect:/admin";
+        return mav;
     }
 
 }
