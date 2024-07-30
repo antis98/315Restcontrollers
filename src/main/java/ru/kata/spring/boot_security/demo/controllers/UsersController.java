@@ -29,45 +29,7 @@ public class UsersController {
     }
 
 
-/*
-    @GetMapping("/admin")
-    public List<User> userList(Model model) {
-        model.addAttribute("allUsers", userService.allUsers());
-        model.addAttribute("userForm", new User());
 
-        return userService.allUsers();
-        }
-*/
-
-
-    /*
-    @GetMapping("/admin")
-    public String users(Model model) {
-
-
-        model.addAttribute("allUsers", userService.allUsers());
-        model.addAttribute("userForm", new User());
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity <String> entity = new HttpEntity<String>(headers);
-
-        return restTemplate.exchange("http://localhost:8080/admin", HttpMethod.GET, entity, String.class).getBody();
-    }
-*/
-
-    /*
-    @GetMapping // ("/admin")
-    public ModelAndView users(Model model) {
-
-        ModelAndView mav = new ModelAndView("admin3");
-
-        model.addAttribute("allUsers", userService.allUsers());
-        model.addAttribute("userForm", new User());
-
-        return mav;
-    }
-*/
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
         return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
@@ -78,20 +40,6 @@ public class UsersController {
 
         return new ResponseEntity<>(userService.allUsers(), HttpStatus.OK);
     }
-
-    /*
-    @DeleteMapping("/{id}")
-    public ModelAndView deleteUser(@RequestParam(required = true, defaultValue = "") Long userId,
-                             @RequestParam(required = true, defaultValue = "") String action,
-                             Model model, @PathVariable("id") long id) {
-
-        ModelAndView mav = new ModelAndView("redirect:/admin");
-
-        userService.deleteUser(id);
-        return mav;
-    }*/
-
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
@@ -106,51 +54,16 @@ public class UsersController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-
-    private String getErrorsFromBindingResult(BindingResult bindingResult) {
-        return bindingResult.getFieldErrors()
-                .stream()
-                .map(x -> x.getDefaultMessage())
-                .collect(Collectors.joining("; "));
-    }
-
-
-
     @PatchMapping("/{id}")
-    public ModelAndView update(@ModelAttribute("user") @RequestBody @Valid User user, BindingResult bindingResult, // ModelAndView
-                         @PathVariable("id") long id) {
-
-        ModelAndView mav = new ModelAndView("redirect:/admin");
-
-        if (bindingResult.hasErrors())
-            return null; // mav;
-
+    public ResponseEntity<HttpStatus> saveUpdateUser(@RequestBody User user, @PathVariable("id") long id,
+                                                     BindingResult bindingResult) {
         userService.update(id, user);
-        return mav; // mav;
+        return ResponseEntity.ok(HttpStatus.OK);
     }
-
-
-/*
-
-    @GetMapping("/showUser")
-    public ModelAndView showUser(Principal principal, Model model) {
-
-        ModelAndView mav = new ModelAndView("/user");
-
-        model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
-        //return userService.loadUserByUsername(principal.getName());
-        return mav;
-    }
-*/
 
     @GetMapping("/showUser")
     public ResponseEntity<User> showUser(Principal principal, Model model) {
 
-        //ModelAndView mav = new ModelAndView("/user");
-
-        //model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
-        //return userService.loadUserByUsername(principal.getName());
         return new ResponseEntity<>(userService.loadUserByUsername(principal.getName()), HttpStatus.OK);
-
     }
 }

@@ -23,10 +23,10 @@ async function fillModal(modal) {
         }
 
         idInput.value = user.id;
-        firstNameInput.value = user.name;
-        lastNameInput.value = user.surname;
+        firstNameInput.value = user.firstName;
+        lastNameInput.value = user.lastName;
         ageInput.value = user.age;
-        emailInput.value = user.email;
+        emailInput.value = user.username;
 
 
         let rolesSelect = HTMLSelectElement;
@@ -39,7 +39,7 @@ async function fillModal(modal) {
             rolesSelect = rolesSelectDelete;
             for (let i = 0; i < user.roles.length; i++) {
                 userRolesHTML +=
-                    `<option value="${user.roles[i].roleName}">${user.roles[i].roleNameWithoutRole}</option>`;
+                    `<option value="${user.roles[i].roleName}">${user.roles[i].roleName}</option>`;
             }
         } else if (rolesSelectEdit !== null) {
             rolesSelect = rolesSelectEdit;

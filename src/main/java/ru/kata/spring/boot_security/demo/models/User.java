@@ -45,7 +45,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @NotEmpty(message = "Не выбрана роль")
     private Set<Role> roles;
 

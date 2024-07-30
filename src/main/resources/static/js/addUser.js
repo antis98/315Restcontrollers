@@ -9,10 +9,10 @@ async function addNewUserForm() {
     newUserForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        const name = newUserForm.querySelector("#firstName").value.trim();
-        const surname = newUserForm.querySelector("#lastName").value.trim();
+        const firstName = newUserForm.querySelector("#firstName").value.trim();
+        const lastName = newUserForm.querySelector("#lastName").value.trim();
         const age = newUserForm.querySelector("#age").value.trim();
-        const email = newUserForm.querySelector("#email").value.trim();
+        const username = newUserForm.querySelector("#email").value.trim();
         const password = newUserForm.querySelector("#password").value.trim();
 
         const rolesSelected = document.getElementById("roles");
@@ -27,10 +27,10 @@ async function addNewUserForm() {
         }
 
         const newUserData = {
-            name: name,
-            surname: surname,
+            firstName: firstName,
+            lastName: lastName,
             age: age,
-            email:email,
+            username:username,
             password: password,
             roles: roles
         };

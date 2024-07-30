@@ -1,5 +1,5 @@
-async function sendDataEditUser(user) {
-    await fetch("/${userId}" ,
+async function sendDataEditUser(user, userId) {
+    await fetch(` /${userId}`,
         {method:"PATCH", headers: {'Content-type': 'application/json'}, body: JSON.stringify(user)} )
 }
 
@@ -25,15 +25,16 @@ modalEdit.addEventListener("submit", async function(event){
 
     let user = {
         id: document.getElementById("idEdit").value,
-        name: document.getElementById("firstNameEdit").value,
-        surname: document.getElementById("lastNameEdit").value,
+        firstName: document.getElementById("firstNameEdit").value,
+        lastName: document.getElementById("lastNameEdit").value,
         age: document.getElementById("ageEdit").value,
-        email: document.getElementById("emailEdit").value,
+        username: document.getElementById("emailEdit").value,
         password: document.getElementById("passwordEdit").value,
         roles: roles
     }
 
-    await sendDataEditUser(user);
+    const userId = event.target.querySelector("#idEdit").value;
+    await sendDataEditUser(user, userId);
     await fillTableOfAllUsers();
 
     const modalBootstrap = bootstrap.Modal.getInstance(modalEdit);

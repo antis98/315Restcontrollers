@@ -18,7 +18,7 @@ async function fillTableAboutUser(){
             <td>${currentUser.firstName}</td>
             <td>${currentUser.lastName}</td>
             <td>${currentUser.age}</td>
-            <td>${currentUser.email}</td>
+            <td>${currentUser.username}</td>
             <td>${currentUser.roles.map(role => role.roleName).join(' ')}</td>
         </tr>`
     currentUserTable1.innerHTML = currentUserTableHTML;
@@ -28,8 +28,8 @@ async function showUserEmailOnNavbar() {
     const currentUserEmailNavbar = document.getElementById("currentUserEmailNavbar")
     const currentUser = await dataAboutCurrentUser();
     currentUserEmailNavbar.innerHTML =
-        `<strong>${currentUser.email}</strong>
+        `<strong>${currentUser.username}</strong>
                  with roles: 
-                 ${currentUser.roles.map(role => role.roleNameWithoutRole).join(' ')}`;
+                 ${currentUser.roles.map(role => role.roleName).join(' ')}`;
 }
 
