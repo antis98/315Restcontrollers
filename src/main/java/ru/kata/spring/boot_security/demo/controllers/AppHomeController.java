@@ -8,7 +8,7 @@ public class AppHomeController {
 
     @GetMapping("/admin")
     public String showIndexPageAdmin() {
-        return "index";
+        return "admin";
     }
 
     @GetMapping("/user")
