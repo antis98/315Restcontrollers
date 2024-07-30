@@ -1,4 +1,4 @@
-$(async function () {
+/*$(async function () {
     await getTableWithUsers();
     getNewUserForm();
     getDefaultModal();
@@ -206,4 +206,4 @@ async function addNewUser() {
             addUserForm.prepend(alert)
         }
     })
-}
+}*/
