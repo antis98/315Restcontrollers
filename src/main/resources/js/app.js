@@ -15,7 +15,7 @@ async function showUserEmailOnNavbar() {
     const currentUserEmailNavbar = document.getElementById("currentUserEmailNavbar")
     const currentUser = await dataAboutCurrentUser();
     currentUserEmailNavbar.innerHTML =
-                `<strong>${currentUser.username}</strong>
+                `<strong>${currentUser.email}</strong>
                  with roles: 
-                 ${currentUser.roles.map(role => role.roleName).join(' ')}`;
+                 ${currentUser.roles.map(role => role.roleNameWithoutRole).join(' ')}`;
 }

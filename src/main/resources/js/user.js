@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 async function dataAboutCurrentUser() {
-    const response = await fetch("/showUser")
+    const response = await fetch("/api/user")
     return await response.json();
 }
 async function fillTableAboutUser(){
@@ -15,11 +15,11 @@ async function fillTableAboutUser(){
     currentUserTableHTML +=
         `<tr>
             <td>${currentUser.id}</td>
-            <td>${currentUser.firstName}</td>
-            <td>${currentUser.lastName}</td>
+            <td>${currentUser.name}</td>
+            <td>${currentUser.surname}</td>
             <td>${currentUser.age}</td>
-            <td>${currentUser.username}</td>
-            <td>${currentUser.roles.map(role => role.roleName).join(' ')}</td>
+            <td>${currentUser.password}</td>
+            <td>${currentUser.roles.map(role => role.roleNameWithoutRole).join(' ')}</td>
         </tr>`
     currentUserTable1.innerHTML = currentUserTableHTML;
 }
@@ -28,8 +28,8 @@ async function showUserEmailOnNavbar() {
     const currentUserEmailNavbar = document.getElementById("currentUserEmailNavbar")
     const currentUser = await dataAboutCurrentUser();
     currentUserEmailNavbar.innerHTML =
-        `<strong>${currentUser.username}</strong>
+        `<strong>${currentUser.email}</strong>
                  with roles: 
-                 ${currentUser.roles.map(role => role.roleName).join(' ')}`;
+                 ${currentUser.roles.map(role => role.roleNameWithoutRole).join(' ')}`;
 }
 

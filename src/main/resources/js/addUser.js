@@ -1,5 +1,5 @@
 async function createNewUser(user) {
-        await fetch("/users",
+        await fetch("/api/admin",
         {method: 'POST',headers: {'Content-Type': 'application/json'}, body: JSON.stringify(user)})
 }
 
@@ -9,10 +9,10 @@ async function addNewUserForm() {
     newUserForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        const firstName = newUserForm.querySelector("#firstName").value.trim();
-        const lastName = newUserForm.querySelector("#lastName").value.trim();
+        const name = newUserForm.querySelector("#firstName").value.trim();
+        const surname = newUserForm.querySelector("#lastName").value.trim();
         const age = newUserForm.querySelector("#age").value.trim();
-        const username = newUserForm.querySelector("#email").value.trim();
+        const email = newUserForm.querySelector("#email").value.trim();
         const password = newUserForm.querySelector("#password").value.trim();
 
         const rolesSelected = document.getElementById("roles");
@@ -27,10 +27,10 @@ async function addNewUserForm() {
         }
 
         const newUserData = {
-            firstName: firstName,
-            lastName: lastName,
+            name: name,
+            surname: surname,
             age: age,
-            username:username,
+            email:email,
             password: password,
             roles: roles
         };

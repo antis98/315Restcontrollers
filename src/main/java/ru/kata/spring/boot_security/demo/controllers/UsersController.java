@@ -1,19 +1,26 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
+import org.springframework.web.bind.annotation.RestController;
+
+
+public class UsersController {
+
+}
+
+/*
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
-import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.services.UserService;
+import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class UsersController {
@@ -67,3 +74,4 @@ public class UsersController {
         return new ResponseEntity<>(userService.loadUserByUsername(principal.getName()), HttpStatus.OK);
     }
 }
+*/

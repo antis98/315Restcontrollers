@@ -1,6 +1,6 @@
-async function sendDataEditUser(user, userId) {
-    await fetch(` /${userId}`,
-        {method:"PATCH", headers: {'Content-type': 'application/json'}, body: JSON.stringify(user)} )
+async function sendDataEditUser(user) {
+    await fetch("/api/admin" ,
+        {method:"PUT", headers: {'Content-type': 'application/json'}, body: JSON.stringify(user)} )
 }
 
 const modalEdit = document.getElementById("editModal");
@@ -25,16 +25,15 @@ modalEdit.addEventListener("submit", async function(event){
 
     let user = {
         id: document.getElementById("idEdit").value,
-        firstName: document.getElementById("firstNameEdit").value,
-        lastName: document.getElementById("lastNameEdit").value,
+        name: document.getElementById("firstNameEdit").value,
+        surname: document.getElementById("lastNameEdit").value,
         age: document.getElementById("ageEdit").value,
-        username: document.getElementById("emailEdit").value,
+        email: document.getElementById("emailEdit").value,
         password: document.getElementById("passwordEdit").value,
         roles: roles
     }
 
-    const userId = event.target.querySelector("#idEdit").value;
-    await sendDataEditUser(user, userId);
+    await sendDataEditUser(user);
     await fillTableOfAllUsers();
 
     const modalBootstrap = bootstrap.Modal.getInstance(modalEdit);

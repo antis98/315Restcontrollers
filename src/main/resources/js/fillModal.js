@@ -1,5 +1,5 @@
 async function getUserDataById(userId) {
-    const response = await fetch(`/${userId}`);
+    const response = await fetch(`/api/admin/${userId}`);
     return await response.json();
 }
 
@@ -23,10 +23,10 @@ async function fillModal(modal) {
         }
 
         idInput.value = user.id;
-        firstNameInput.value = user.firstName;
-        lastNameInput.value = user.lastName;
+        firstNameInput.value = user.name;
+        lastNameInput.value = user.surname;
         ageInput.value = user.age;
-        emailInput.value = user.username;
+        emailInput.value = user.email;
 
 
         let rolesSelect = HTMLSelectElement;
@@ -39,7 +39,7 @@ async function fillModal(modal) {
             rolesSelect = rolesSelectDelete;
             for (let i = 0; i < user.roles.length; i++) {
                 userRolesHTML +=
-                    `<option value="${user.roles[i].roleName}">${user.roles[i].roleName}</option>`;
+                    `<option value="${user.roles[i].roleName}">${user.roles[i].roleNameWithoutRole}</option>`;
             }
         } else if (rolesSelectEdit !== null) {
             rolesSelect = rolesSelectEdit;
