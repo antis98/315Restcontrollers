@@ -27,7 +27,7 @@ public class User implements UserDetails{
 
     @Column(name = "name")
     @NotEmpty(message = "shold be not empty")
-    @Size(min = 2, max = 100, message = "surname should be between 2 and 100")
+    @Size(min = 2, max = 100, message = "should be between 2 and 100")
     private String name;
 
     @Column(name = "password")
@@ -35,7 +35,7 @@ public class User implements UserDetails{
 
     @Column(name = "surname")
     @NotEmpty(message = "shold be not empty")
-    @Size(min = 2, max = 150, message = "surname should be between 2 and 150")
+    @Size(min = 2, max = 150, message = "should be between 2 and 150")
     private String surname;
 
     @Column(name = "age")
