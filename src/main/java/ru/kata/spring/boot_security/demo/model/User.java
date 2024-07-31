@@ -26,7 +26,7 @@ public class User implements UserDetails{
     private int id;
 
     @Column(name = "name")
-    @NotEmpty(message = "password shold be not empty")
+    @NotEmpty(message = "shold be not empty")
     @Size(min = 2, max = 100, message = "surname should be between 2 and 100")
     private String name;
 
@@ -34,7 +34,7 @@ public class User implements UserDetails{
     private String password;
 
     @Column(name = "surname")
-    @NotEmpty(message = "password shold be not empty")
+    @NotEmpty(message = "shold be not empty")
     @Size(min = 2, max = 150, message = "surname should be between 2 and 150")
     private String surname;
 
