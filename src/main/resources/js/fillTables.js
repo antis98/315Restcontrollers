@@ -27,7 +27,7 @@ async function fillTableOfAllUsers() {
                 <td>${user.email}</td>
                 <td>${user.roles.map(role => role.roleNameWithoutRole).join(' ')}</td>
                 <td>
-                    <button class="btn btn-info btn-sm text-white"
+                    <button class="btn btn-primary btn-sm text-white"
                             data-bs-toggle="modal"
                             data-bs-target="#editModal"
                             data-user-id="${user.id}">

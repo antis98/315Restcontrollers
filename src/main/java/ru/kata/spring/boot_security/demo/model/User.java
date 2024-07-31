@@ -31,7 +31,6 @@ public class User implements UserDetails{
     private String name;
 
     @Column(name = "password")
-    @NotEmpty(message = "password shold be not empty")
     private String password;
 
     @Column(name = "surname")
