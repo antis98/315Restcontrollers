@@ -44,7 +44,7 @@ public class User implements UserDetails{
 
     @Column(name = "email")
     @NotEmpty(message = "shold be not empty")
-    @Email
+    @Email(message = "incorrect email")
     private String email;
 
 
