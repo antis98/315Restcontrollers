@@ -100,6 +100,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(User user) {
 
+
         User userFromDB = userRepository.findUserById(user.getId());
         if (user.getRoles().isEmpty()) {
             user.setRoles(userFromDB.getRoles());
@@ -109,9 +110,10 @@ public class UserServiceImpl implements UserService {
                     .collect(Collectors.toSet()));
         }
 
+
         if (user.getPassword().isEmpty()) {
 
-            user.setPassword(user.getPassword());
+            user.setPassword(userFromDB.getPassword());
         } else {
             if (!user.getPassword().equals(userFromDB.getPassword())) {
                 user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
