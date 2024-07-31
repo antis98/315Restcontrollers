@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findUserByEmail(email);
@@ -44,24 +45,45 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean saveUser(User user) {
 
-        if (user.getRoles().isEmpty()) {
-            user.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));
-        }
-        user.setRoles(user.getRoles().stream()
-                .map(role -> roleSerivce.getByName(role.getRoleName()))
-                .collect(Collectors.toSet()));
+        Optional<User> userFromDB = userRepository.findUserByEmail(user.getEmail());
 
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return true;
+        if (userFromDB.isEmpty()) {
+            if (user.getRoles().isEmpty()) {
+                user.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));
+            }
+            user.setRoles(user.getRoles().stream()
+                    .map(role -> roleSerivce.getByName(role.getRoleName()))
+                    .collect(Collectors.toSet()));
+
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Transactional
     public boolean saveUser(User user, Set<Role> roles) {
-        user.setRoles(roles);
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return true;
+
+        Optional<User> userFromDB = userRepository.findUserByEmail(user.getEmail());
+
+        if (userFromDB.isEmpty()) {
+
+            //user.setRoles(Collections.singleton(new Role(user.getRoles(), "ROLE_ADMIN")));
+            //user.setRoles(user.getRoles());
+            //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            //userRepository.save(user);
+
+            user.setRoles(roles);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
     @Transactional
@@ -74,6 +96,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = userRepository.findById(id);
         return user.orElse(new User());
     }
+
     @Transactional
     public void updateUser(User user) {
 
