@@ -109,9 +109,15 @@ public class UserServiceImpl implements UserService {
                     .collect(Collectors.toSet()));
         }
 
-        if (!user.getPassword().equals(userFromDB.getPassword())) {
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (user.getPassword().isEmpty()) {
+
+            user.setPassword(user.getPassword());
+        } else {
+            if (!user.getPassword().equals(userFromDB.getPassword())) {
+                user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            }
         }
+
 
         userRepository.save(user);
     }
