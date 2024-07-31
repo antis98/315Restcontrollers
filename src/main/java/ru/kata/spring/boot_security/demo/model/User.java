@@ -39,11 +39,11 @@ public class User implements UserDetails{
     private String surname;
 
     @Column(name = "age")
-    @Min(value = 0, message = "age should be more than 0")
+    @Min(value = 0, message = "should be more than 0")
     private int age;
 
     @Column(name = "email")
-    @NotEmpty(message = "email shold be not empty")
+    @NotEmpty(message = "shold be not empty")
     @Email
     private String email;
 
