@@ -58,7 +58,7 @@ async function fillTableAboutCurrentUser(){
             <td>${currentUser.name}</td>
             <td>${currentUser.surname}</td>
             <td>${currentUser.age}</td>
-            <td>${currentUser.password}</td>
+            <td>${currentUser.email}</td>
             <td>${currentUser.roles.map(role => role.roleNameWithoutRole).join(' ')}</td>
         </tr>`
     currentUserTable.innerHTML = currentUserTableHTML;
